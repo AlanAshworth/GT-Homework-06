@@ -1,0 +1,39 @@
+.list-group {
+  margin-top: 15px;
+}
+
+.card {
+  margin: 15px;
+}
+
+.forecastCards {
+  width: fit-content;
+}
+
+#lcol {
+  background-color: #f1f1f1 !important;
+  padding: 5px 15px 25px 15px;
+}
+
+#rcol {
+  background-color: blanchedalmond;
+}
+
+#locationStats {
+  width: 100vw;
+}
+
+#locationStats,
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+#locationStats,
+li {
+  padding: 5px 0px 10px 0px;
+}
+
+#forecastTitle {
+  margin: 0px 0px 0px 15px;
+}

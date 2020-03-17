@@ -23,11 +23,115 @@
         </header>
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
-                    
+                <div class="col-sm-3" id="lcol">
+
+                    <!-- Search Bar -->
+                    <h5 for="formGroupCitySearchInput">Search for a City:</h5>
+                    <div class="input-group mb-3b">
+                        <input type="text" class="form-control" id="formGroupCitySearchInput" aria-label="Recipient's username"
+                         aria-describedby="button-addon">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="button" id="button-addon">Button</button>
+                        </div>
+                    </div>
+
+                    <!-- Location History -->
+                    <ul class="list-group" id="searchHistory">
+                        <li class="list-group-item">Austin</li>
+                        <li class="list-group-item">Chicago</li>
+                        <li class="list-group-item">New York</li>
+                        <li class="list-group-item">Orlando</li>
+                        <li class="list-group-item">San Fransico</li>
+                        <li class="list-group-item">Seattle</li>
+                        <li class="list-group-item">Denver</li>
+                        <li class="list-group-item">Atlanta</li>
+                      </ul>
                 </div>
-                <div class="col-sm-8">
-                    
+                <div class="col-sm-9" id="rcol">
+
+                    <!-- Todays' Highlight -->
+                    <div class="row">
+                        <div class="card" id="locationHighlight">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <ul id="locationStats">
+                                  <li>Temperature: 90.0 F</li>
+                                  <li>Humidity: 41%</li>
+                                  <li>Wind Speed: 4.7 MPH</li>
+                                  <li>UC Index: 9.49</li>
+                              </ul>
+                            </div>
+                        </div>    
+                    </div>
+
+                    <!-- 5-Day Forecast Title-->
+                    <div class="row">
+                        <h4 id="forecastTitle">5-Day Forecast</h4>
+                    </div>
+
+                    <!-- 5-Day Forecast Cards-->
+                    <div class="row">
+                        <div class="col-sm-2.4 forecastCards" id="col1">
+                            <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">12/31/2020</h5>
+                                  <h6 class="card-subtitle mb-2 text-muted">Image</h6>
+                                  <ul>
+                                    <li>Temp: 90.0 F</li>
+                                    <li>Humidity: 41%</li>
+                                  </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2.4 forecastCards" id="col2">
+                            <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">12/31/2020</h5>
+                                  <h6 class="card-subtitle mb-2 text-muted">Image</h6>
+                                  <ul>
+                                    <li>Temp: 90.0 F</li>
+                                    <li>Humidity: 41%</li>
+                                  </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2.4 forecastCards" id="col3">
+                            <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">12/31/2020</h5>
+                                  <h6 class="card-subtitle mb-2 text-muted">Image</h6>
+                                  <ul>
+                                    <li>Temp: 90.0 F</li>
+                                    <li>Humidity: 41%</li>
+                                  </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2.4 forecastCards" id="col4">
+                            <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">12/31/2020</h5>
+                                  <h6 class="card-subtitle mb-2 text-muted">Image</h6>
+                                  <ul>
+                                    <li>Temp: 90.0 F</li>
+                                    <li>Humidity: 41%</li>
+                                  </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2.4 forecastCards" id="col5">
+                            <div class="card">
+                                <div class="card-body">
+                                  <h5 class="card-title">12/31/2020</h5>
+                                  <h6 class="card-subtitle mb-2 text-muted">Image</h6>
+                                  <ul>
+                                    <li>Temp: 90.0 F</li>
+                                    <li>Humidity: 41%</li>
+                                  </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
