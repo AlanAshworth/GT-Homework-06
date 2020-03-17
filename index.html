@@ -6,6 +6,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
+        <!-- jQuery js -->
+        <!-- <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script> -->
+        
         <!-- Boostrap css -->
         <link
         rel="stylesheet"
@@ -20,7 +26,6 @@
         <header>
             <nav class="navbar navbar-dark bg-dark justify-content-center">
                 <a class="navbar-brand" href="#">
-                <img src="/docs/4.4/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
                 Weather Dashboard
                 </a>
             </nav>
@@ -139,12 +144,35 @@
                 </div>
             </div>
         </div>
-        <!-- jQuery js -->
-        <script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
-        <!-- Custom js -->
-        <script src="Assets/js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // TODO: Add search icon to search button
+                // TODO: remove hardcoded list, add generated list for searches
+
+                var city = "Atlanta";
+                var apikey = "54a9099a651206645d31affb6bbd4e54";
+                var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apikey;
+                var queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apikey;
+
+                // Get the current day's weather | API documentation @ https://openweathermap.org/current
+                $.ajax({
+                    url: queryWeatherURL,
+                    method: "GET"
+                }).then(function(response) {
+                    console.log("Weather: ", queryWeatherURL);
+                    console.log(response);
+                });
+
+                // Get the forecasted weather | API documantation @ https://openweathermap.org/forecast5
+                $.ajax({
+                    url: queryForecastURL,
+                    method: "GET"
+                }).then(function(response) {
+                    console.log("Forecast: ", queryForecastURL);
+                    console.log(response);
+                });
+            });
+        </script>
     </body>
 </html>
