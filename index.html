@@ -65,6 +65,7 @@
             <div class="card" id="locationHighlight">
               <div class="card-body">
                 <h5 class="card-title" id="weatherHighlight"></h5>
+                <img class="card-subtitle mb-2" id="weatherIcon" alt="weather icon">
                 <ul id="locationStats">
                   <li class="temp"></li>
                   <li class="humidity"></li>
@@ -242,7 +243,9 @@
           console.log("Humidity: " + response.main.humidity + "%");
           console.log("Wind Speed: " + response.wind.speed + " MPH");
 
-          $("#weatherHighlight").text(response.name + " (" + moment().format("l") + ") " + response.weather[0].icon);
+        //   $("#weatherHighlight").text(response.name + " (" + moment().format("l") + ") ").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
+        $("#weatherHighlight").text(response.name + " (" + moment().format("l") + ") ");
+        $("#weatherIcon").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
           $(".temp").text("Temperature: " + response.main.temp + " °F");
           $(".humidity").text("Humidity: " + response.main.humidity + "%");
           $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");

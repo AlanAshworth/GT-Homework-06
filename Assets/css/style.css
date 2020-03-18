@@ -33,3 +33,13 @@ li {
 #forecastTitle {
   margin: 0px 0px 0px 15px;
 }
+
+#weatherHighlight,
+#weatherIcon {
+  display: inline;
+}
+
+#weatherIcon {
+  float: inline-end;
+}
+
