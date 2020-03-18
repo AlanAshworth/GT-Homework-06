@@ -13,7 +13,7 @@
 .uv {
   color: white;
   background-color: red;
-  display: table;
+  display: inline-block;
 }
 
 #lcol {
