@@ -1,178 +1,259 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Weather Dashboard</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <!-- jQuery js -->
-        <!-- <script
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Weather Dashboard</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- jQuery js -->
+    <!-- <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script> -->
-        
-        <!-- Boostrap css -->
-        <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous">
-        
-        <!-- Custom css -->
-        <link rel="stylesheet" href="Assets/css/style.css">
-    </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-dark bg-dark justify-content-center">
-                <a class="navbar-brand" href="#">
-                Weather Dashboard
-                </a>
-            </nav>
-        </header>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3" id="lcol">
 
-                    <!-- Search Bar -->
-                    <h5 for="formGroupCitySearchInput">Search for a City:</h5>
-                    <div class="input-group mb-3b">
-                        <input type="text" class="form-control" id="formGroupCitySearchInput" aria-label="Recipient's username"
-                         aria-describedby="button-addon">
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="button" id="button-addon">Button</button>
-                        </div>
-                    </div>
+    <!-- Boostrap css -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
-                    <!-- Location History -->
-                    <ul class="list-group" id="searchHistory">
-                        <li class="list-group-item">Austin</li>
-                        <li class="list-group-item">Chicago</li>
-                        <li class="list-group-item">New York</li>
-                        <li class="list-group-item">Orlando</li>
-                        <li class="list-group-item">San Fransico</li>
-                        <li class="list-group-item">Seattle</li>
-                        <li class="list-group-item">Denver</li>
-                        <li class="list-group-item">Atlanta</li>
-                      </ul>
-                </div>
-                <div class="col-sm-9" id="rcol">
-
-                    <!-- Todays' Highlight -->
-                    <div class="row">
-                        <div class="card" id="locationHighlight">
-                            <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <ul id="locationStats">
-                                  <li>Temperature: 90.0 F</li>
-                                  <li>Humidity: 41%</li>
-                                  <li>Wind Speed: 4.7 MPH</li>
-                                  <li>UC Index: 9.49</li>
-                              </ul>
-                            </div>
-                        </div>    
-                    </div>
-
-                    <!-- 5-Day Forecast Title-->
-                    <div class="row">
-                        <h4 id="forecastTitle">5-Day Forecast</h4>
-                    </div>
-
-                    <!-- 5-Day Forecast Cards-->
-                    <div class="row">
-                        <div class="col-sm-2.4 forecastCards" id="col1">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body">
-                                  <h5 class="card-title">12/31/2020</h5>
-                                  <h6 class="card-subtitle mb-2">Image</h6>
-                                  <ul>
-                                    <li>Temp: 90.0 F</li>
-                                    <li>Humidity: 41%</li>
-                                  </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2.4 forecastCards" id="col2">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body">
-                                  <h5 class="card-title">12/31/2020</h5>
-                                  <h6 class="card-subtitle mb-2">Image</h6>
-                                  <ul>
-                                    <li>Temp: 90.0 F</li>
-                                    <li>Humidity: 41%</li>
-                                  </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2.4 forecastCards" id="col3">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body">
-                                  <h5 class="card-title">12/31/2020</h5>
-                                  <h6 class="card-subtitle mb-2">Image</h6>
-                                  <ul>
-                                    <li>Temp: 90.0 F</li>
-                                    <li>Humidity: 41%</li>
-                                  </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2.4 forecastCards" id="col4">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body">
-                                  <h5 class="card-title">12/31/2020</h5>
-                                  <h6 class="card-subtitle mb-2">Image</h6>
-                                  <ul>
-                                    <li>Temp: 90.0 F</li>
-                                    <li>Humidity: 41%</li>
-                                  </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2.4 forecastCards" id="col5">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body">
-                                  <h5 class="card-title">12/31/2020</h5>
-                                  <h6 class="card-subtitle mb-2">Image</h6>
-                                  <ul>
-                                    <li>Temp: 90.0 F</li>
-                                    <li>Humidity: 41%</li>
-                                  </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Custom css -->
+    <link rel="stylesheet" href="Assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark justify-content-center">
+        <a class="navbar-brand" href="#">
+          Weather Dashboard
+        </a>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3" id="lcol">
+          <!-- Search Bar -->
+          <h5>Search for a City:</h5>
+          <form class="input-group mb-3b" id="searchCityForm">
+            <input
+              type="text"
+              class="form-control"
+              id="searchCityInput"
+              aria-label="City"
+              aria-describedby="searchCityButton"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" id="searchCityButton">
+                Button
+              </button>
             </div>
+          </form>
+
+          <!-- Location History -->
+          <ul class="list-group" id="searchedCityList">
+            <!-- <li class="list-group-item">Austin</li>
+            <li class="list-group-item">Chicago</li>
+            <li class="list-group-item">New York</li>
+            <li class="list-group-item">Orlando</li>
+            <li class="list-group-item">San Fransico</li>
+            <li class="list-group-item">Seattle</li>
+            <li class="list-group-item">Denver</li>
+            <li class="list-group-item">Atlanta</li> -->
+          </ul>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                // TODO: Add search icon to search button
-                // TODO: remove hardcoded list, add generated list for searches
+        <div class="col-sm-9" id="rcol">
+          <!-- Todays' Highlight -->
+          <div class="row">
+            <div class="card" id="locationHighlight">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <ul id="locationStats">
+                  <li>Temperature: 90.0 F</li>
+                  <li>Humidity: 41%</li>
+                  <li>Wind Speed: 4.7 MPH</li>
+                  <li>UC Index: 9.49</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-                var city = "Atlanta";
-                var apikey = "54a9099a651206645d31affb6bbd4e54";
-                var queryWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apikey;
-                var queryForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apikey;
+          <!-- 5-Day Forecast Title-->
+          <div class="row">
+            <h4 id="forecastTitle">5-Day Forecast</h4>
+          </div>
 
-                // Get the current day's weather | API documentation @ https://openweathermap.org/current
-                $.ajax({
-                    url: queryWeatherURL,
-                    method: "GET"
-                }).then(function(response) {
-                    console.log("Weather: ", queryWeatherURL);
-                    console.log(response);
-                });
+          <!-- 5-Day Forecast Cards-->
+          <div class="row">
+            <div class="col-sm-2.4 forecastCards" id="col1">
+              <div class="card text-white bg-primary">
+                <div class="card-body">
+                  <h5 class="card-title">12/31/2020</h5>
+                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <ul>
+                    <li>Temp: 90.0 F</li>
+                    <li>Humidity: 41%</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2.4 forecastCards" id="col2">
+              <div class="card text-white bg-primary">
+                <div class="card-body">
+                  <h5 class="card-title">12/31/2020</h5>
+                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <ul>
+                    <li>Temp: 90.0 F</li>
+                    <li>Humidity: 41%</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2.4 forecastCards" id="col3">
+              <div class="card text-white bg-primary">
+                <div class="card-body">
+                  <h5 class="card-title">12/31/2020</h5>
+                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <ul>
+                    <li>Temp: 90.0 F</li>
+                    <li>Humidity: 41%</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2.4 forecastCards" id="col4">
+              <div class="card text-white bg-primary">
+                <div class="card-body">
+                  <h5 class="card-title">12/31/2020</h5>
+                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <ul>
+                    <li>Temp: 90.0 F</li>
+                    <li>Humidity: 41%</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2.4 forecastCards" id="col5">
+              <div class="card text-white bg-primary">
+                <div class="card-body">
+                  <h5 class="card-title">12/31/2020</h5>
+                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <ul>
+                    <li>Temp: 90.0 F</li>
+                    <li>Humidity: 41%</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        // TODO: Add search icon to search button
+        // TODO: remove hardcoded list, add generated list for searches
 
-                // Get the forecasted weather | API documantation @ https://openweathermap.org/forecast5
-                $.ajax({
-                    url: queryForecastURL,
-                    method: "GET"
-                }).then(function(response) {
-                    console.log("Forecast: ", queryForecastURL);
-                    console.log(response);
-                });
-            });
-        </script>
-    </body>
+        // var headerEl = $("<header>");
+        // var navEl = $("<nav>");
+        // var aEl = $("<a>")
+        // navEl.addClass("navbar navbar-dark bg-dark justify-content-center");
+        // aEl.addClass("navbar-brand").text("Weather Dashboard").attr("href", "#");
+        // $("body").append(headerEl);
+        // $(headerEl).append(navEl);
+        // $(navEl).append(aEl);
+
+        // var containerDiv = $("<div>");
+        // var rowDiv = $("<div>");
+        // containerDiv.addClass("container");
+        // rowDiv.addClass("row")
+
+        // var rowDivColumnLeft = $("<div>");
+        // var rowDivColumnRight = $("<div>");
+        // rowDivColumnLeft.addClass("col-sm-3").attr("id", "lcol");
+        // rowDivColumnRight.addClass("col-sm-9").attr("id", "rcol");
+
+        // $(containerDiv).append(rowDiv);
+        // $(rowDiv).append(rowDivColumnLeft);
+        // $(rowDiv).append(rowDivColumnRight);
+
+        // DOM ------------------------------------------------------------------------------------
+        var cities = [];
+        var searchedCityList = document.getElementById("searchedCityList");
+
+        // Event-Listeners ------------------------------------------------------------------------
+        document.getElementById("searchCityButton").addEventListener("click", addCity);
+
+        // Functions ------------------------------------------------------------------------------
+        function renderCurrentWeather(){
+            searchedCityList = "";
+
+            for (let i = 0; i < cities.length; i++) {
+                const element = array[i];
+                
+            }
+        }
+        
+        function saveCities () {
+            localStorage.setItem("cities", JSON.stringify(cities));
+        }
+        
+        function addCity(event) {
+            event.preventDefault();
+
+            if($("#searchCityInput").val() === "") {
+                return;
+            } else {
+            cities.push($("#searchCityInput").val());
+            $("#searchCityInput").val("");
+            saveCities();
+            updateCityList();
+            }
+        }
+
+        function updateCityList() {
+            $("#searchedCityList").html("");
+            for (let i = 0; i < cities.length; i++) {
+                let newCity = $("<li>").addClass("list-group-item").attr("data-city", cities[i]).text(cities[i]);
+                $("#searchedCityList").prepend(newCity);
+            }
+        }
+
+        // API Calls-------------------------------------------------------------------------------
+        var q = "Atlanta";
+        var apikey = "54a9099a651206645d31affb6bbd4e54";
+        var queryWeatherURL =
+          "https://api.openweathermap.org/data/2.5/weather?q=" +
+          q +
+          "&appid=" +
+          apikey;
+        var queryForecastURL =
+          "https://api.openweathermap.org/data/2.5/forecast?q=" +
+          q +
+          "&appid=" +
+          apikey;
+
+        // Get the current day's weather | API documentation @ https://openweathermap.org/current
+        $.ajax({
+          url: queryWeatherURL,
+          method: "GET"
+        }).then(function(response) {
+          console.log("Weather: ", queryWeatherURL);
+          console.log(response);
+        });
+
+        // Get the forecasted weather | API documantation @ https://openweathermap.org/forecast5
+        $.ajax({
+          url: queryForecastURL,
+          method: "GET"
+        }).then(function(response) {
+          console.log("Forecast: ", queryForecastURL);
+          console.log(response);
+        });
+      });
+    </script>
+  </body>
 </html>
