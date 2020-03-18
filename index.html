@@ -85,11 +85,11 @@
             <div class="col-sm-2.4 forecastCards" id="col1">
               <div class="card text-white bg-primary">
                 <div class="card-body">
-                  <h5 class="card-title">12/31/2020</h5>
-                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <h5 class="card-title" id="forecastDateDay1"></h5>
+                  <img class="card-subtitle mb-2" id="forecastIconDay1" alt="weather icon">
                   <ul>
-                    <li>Temp: 90.0 F</li>
-                    <li>Humidity: 41%</li>
+                    <li id="forecastTempDay1"></li>
+                    <li id="forecastHumidityDay1"></li>
                   </ul>
                 </div>
               </div>
@@ -97,11 +97,11 @@
             <div class="col-sm-2.4 forecastCards" id="col2">
               <div class="card text-white bg-primary">
                 <div class="card-body">
-                  <h5 class="card-title">12/31/2020</h5>
-                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <h5 class="card-title" id="forecastDateDay2"></h5>
+                  <img class="card-subtitle mb-2" id="forecastIconDay2" alt="weather icon">
                   <ul>
-                    <li>Temp: 90.0 F</li>
-                    <li>Humidity: 41%</li>
+                    <li id="forecastTempDay2"></li>
+                    <li id="forecastHumidityDay2"></li>
                   </ul>
                 </div>
               </div>
@@ -109,11 +109,11 @@
             <div class="col-sm-2.4 forecastCards" id="col3">
               <div class="card text-white bg-primary">
                 <div class="card-body">
-                  <h5 class="card-title">12/31/2020</h5>
-                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <h5 class="card-title" id="forecastDateDay3"></h5>
+                  <img class="card-subtitle mb-2" id="forecastIconDay3" alt="weather icon">
                   <ul>
-                    <li>Temp: 90.0 F</li>
-                    <li>Humidity: 41%</li>
+                    <li id="forecastTempDay3"></li>
+                    <li id="forecastHumidityDay3"></li>
                   </ul>
                 </div>
               </div>
@@ -121,11 +121,11 @@
             <div class="col-sm-2.4 forecastCards" id="col4">
               <div class="card text-white bg-primary">
                 <div class="card-body">
-                  <h5 class="card-title">12/31/2020</h5>
-                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <h5 class="card-title" id="forecastDateDay4"></h5>
+                  <img class="card-subtitle mb-2" id="forecastIconDay4" alt="weather icon">
                   <ul>
-                    <li>Temp: 90.0 F</li>
-                    <li>Humidity: 41%</li>
+                    <li id="forecastTempDay4"></li>
+                    <li id="forecastHumidityDay4"></li>
                   </ul>
                 </div>
               </div>
@@ -133,11 +133,11 @@
             <div class="col-sm-2.4 forecastCards" id="col5">
               <div class="card text-white bg-primary">
                 <div class="card-body">
-                  <h5 class="card-title">12/31/2020</h5>
-                  <h6 class="card-subtitle mb-2">Image</h6>
+                  <h5 class="card-title" id="forecastDateDay5"></h5>
+                  <img class="card-subtitle mb-2" id="forecastIconDay5" alt="weather icon">
                   <ul>
-                    <li>Temp: 90.0 F</li>
-                    <li>Humidity: 41%</li>
+                    <li id="forecastTempDay5"></li>
+                    <li id="forecastHumidityDay5"></li>
                   </ul>
                 </div>
               </div>
@@ -242,13 +242,7 @@
           console.log("Humidity: " + response.main.humidity + "%");
           console.log("Wind Speed: " + response.wind.speed + " MPH");
 
-          $("#weatherHighlight").text(
-            response.name +
-              " (" +
-              moment().format("l") +
-              ") " +
-              response.weather.icon
-          );
+          $("#weatherHighlight").text(response.name + " (" + moment().format("l") + ") " + response.weather[0].icon);
           $(".temp").text("Temperature: " + response.main.temp + " °F");
           $(".humidity").text("Humidity: " + response.main.humidity + "%");
           $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");
@@ -261,6 +255,30 @@
         }).then(function(response) {
           console.log("Forecast: ", queryForecastURL);
           console.log(response);
+
+          $("#forecastDateDay1").text(moment().add(1, 'days').format("l"));
+          $("#forecastDateDay2").text(moment().add(2, 'days').format("l"));
+          $("#forecastDateDay3").text(moment().add(3, 'days').format("l"));
+          $("#forecastDateDay4").text(moment().add(4, 'days').format("l"));
+          $("#forecastDateDay5").text(moment().add(5, 'days').format("l"));
+
+          $("#forecastIconDay1").attr("src", "http://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png");
+          $("#forecastIconDay2").attr("src", "http://openweathermap.org/img/w/" + response.list[10].weather[0].icon + ".png");
+          $("#forecastIconDay3").attr("src", "http://openweathermap.org/img/w/" + response.list[19].weather[0].icon + ".png");
+          $("#forecastIconDay4").attr("src", "http://openweathermap.org/img/w/" + response.list[28].weather[0].icon + ".png");
+          $("#forecastIconDay5").attr("src", "http://openweathermap.org/img/w/" + response.list[37].weather[0].icon + ".png");
+
+          $("#forecastTempDay1").text("Temp: " + response.list[0].main.temp + " °F");
+          $("#forecastTempDay2").text("Temp: " + response.list[10].main.temp + " °F");
+          $("#forecastTempDay3").text("Temp: " + response.list[19].main.temp + " °F");
+          $("#forecastTempDay4").text("Temp: " + response.list[28].main.temp + " °F");
+          $("#forecastTempDay5").text("Temp: " + response.list[37].main.temp + " °F");
+
+          $("#forecastHumidityDay1").text("Humidity: " + response.list[0].main.humidity + "%");
+          $("#forecastHumidityDay2").text("Humidity: " + response.list[10].main.humidity + "%");
+          $("#forecastHumidityDay3").text("Humidity: " + response.list[19].main.humidity + "%");
+          $("#forecastHumidityDay4").text("Humidity: " + response.list[28].main.humidity + "%");
+          $("#forecastHumidityDay5").text("Humidity: " + response.list[37].main.humidity + "%");
         });
       });
     </script>
