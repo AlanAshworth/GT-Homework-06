@@ -46,35 +46,30 @@
               aria-describedby="searchCityButton"
             />
             <div class="input-group-append">
-              <button class="btn btn-primary" type="button" id="searchCityButton">
+              <button
+                class="btn btn-primary"
+                type="button"
+                id="searchCityButton"
+              >
                 Button
               </button>
             </div>
           </form>
 
           <!-- Location History -->
-          <ul class="list-group" id="searchedCityList">
-            <!-- <li class="list-group-item">Austin</li>
-            <li class="list-group-item">Chicago</li>
-            <li class="list-group-item">New York</li>
-            <li class="list-group-item">Orlando</li>
-            <li class="list-group-item">San Fransico</li>
-            <li class="list-group-item">Seattle</li>
-            <li class="list-group-item">Denver</li>
-            <li class="list-group-item">Atlanta</li> -->
-          </ul>
+          <ul class="list-group" id="searchedCityList"></ul>
         </div>
         <div class="col-sm-9" id="rcol">
           <!-- Todays' Highlight -->
           <div class="row">
             <div class="card" id="locationHighlight">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title" id="weatherHighlight"></h5>
                 <ul id="locationStats">
-                  <li>Temperature: 90.0 F</li>
-                  <li>Humidity: 41%</li>
-                  <li>Wind Speed: 4.7 MPH</li>
-                  <li>UC Index: 9.49</li>
+                  <li class="temp"></li>
+                  <li class="humidity"></li>
+                  <li class="wind"></li>
+                  <li class="uv"></li>
                 </ul>
               </div>
             </div>
@@ -152,88 +147,80 @@
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        // TODO: Add search icon to search button
-        // TODO: remove hardcoded list, add generated list for searches
-
-        // var headerEl = $("<header>");
-        // var navEl = $("<nav>");
-        // var aEl = $("<a>")
-        // navEl.addClass("navbar navbar-dark bg-dark justify-content-center");
-        // aEl.addClass("navbar-brand").text("Weather Dashboard").attr("href", "#");
-        // $("body").append(headerEl);
-        // $(headerEl).append(navEl);
-        // $(navEl).append(aEl);
-
-        // var containerDiv = $("<div>");
-        // var rowDiv = $("<div>");
-        // containerDiv.addClass("container");
-        // rowDiv.addClass("row")
-
-        // var rowDivColumnLeft = $("<div>");
-        // var rowDivColumnRight = $("<div>");
-        // rowDivColumnLeft.addClass("col-sm-3").attr("id", "lcol");
-        // rowDivColumnRight.addClass("col-sm-9").attr("id", "rcol");
-
-        // $(containerDiv).append(rowDiv);
-        // $(rowDiv).append(rowDivColumnLeft);
-        // $(rowDiv).append(rowDivColumnRight);
-
         // DOM ------------------------------------------------------------------------------------
         var cities = [];
         var searchedCityList = document.getElementById("searchedCityList");
 
-        // Event-Listeners ------------------------------------------------------------------------
-        document.getElementById("searchCityButton").addEventListener("click", addCity);
+        // Function calls -------------------------------------------------------------------------
+        initializeCities();
 
         // Functions ------------------------------------------------------------------------------
-        function renderCurrentWeather(){
-            searchedCityList = "";
+        function initializeCities() {
+          let savedCities = JSON.parse(localStorage.getItem("cities"));
+          if (savedCities !== null) {
+            cities = savedCities;
+          }
+          updateCityList();
+        }
 
-            for (let i = 0; i < cities.length; i++) {
-                const element = array[i];
-                
-            }
+        function saveCities() {
+          localStorage.setItem("cities", JSON.stringify(cities));
         }
-        
-        function saveCities () {
-            localStorage.setItem("cities", JSON.stringify(cities));
+
+        function updateCityList() {
+          $("#searchedCityList").html("");
+          for (let i = 0; i < cities.length; i++) {
+            let newCity = $("<li>")
+              .addClass("list-group-item")
+              .attr("data-city", cities[i])
+              .text(cities[i]);
+            $("#searchedCityList").prepend(newCity);
+          }
         }
-        
+
         function addCity(event) {
-            event.preventDefault();
+          event.preventDefault();
 
-            if($("#searchCityInput").val() === "") {
-                return;
-            } else {
+          if ($("#searchCityInput").val() === "") {
+            return;
+          } else {
             cities.push($("#searchCityInput").val());
             $("#searchCityInput").val("");
             saveCities();
             updateCityList();
-            }
+          }
         }
 
-        function updateCityList() {
-            $("#searchedCityList").html("");
-            for (let i = 0; i < cities.length; i++) {
-                let newCity = $("<li>").addClass("list-group-item").attr("data-city", cities[i]).text(cities[i]);
-                $("#searchedCityList").prepend(newCity);
-            }
+        // TODO: set weather card and forecast cards to clicked index
+        function targetCity(event) {
+          var element = event.target;
+
+          if (element.matches("li") === true) {
+            var index = element.getAttribute("data-city");
+            console.log("data-city: ", index);
+            return index;
+          }
         }
 
-        // API Calls-------------------------------------------------------------------------------
+        // Event-Listeners ------------------------------------------------------------------------
+        $("#searchCityButton").on("click", addCity);
+        $("#searchedCityList").on("click", targetCity);
+
+        // API Calls ------------------------------------------------------------------------------
         var q = "Atlanta";
         var apikey = "54a9099a651206645d31affb6bbd4e54";
         var queryWeatherURL =
           "https://api.openweathermap.org/data/2.5/weather?q=" +
           q +
-          "&appid=" +
+          "&units=imperial&appid=" +
           apikey;
         var queryForecastURL =
           "https://api.openweathermap.org/data/2.5/forecast?q=" +
           q +
-          "&appid=" +
+          "&units=imperial&appid=" +
           apikey;
 
         // Get the current day's weather | API documentation @ https://openweathermap.org/current
@@ -243,6 +230,28 @@
         }).then(function(response) {
           console.log("Weather: ", queryWeatherURL);
           console.log(response);
+
+          console.log(
+            response.name +
+              " (" +
+              moment().format("l") +
+              ") " +
+              response.weather.icon
+          );
+          console.log("Temperature: " + response.main.temp + " °F");
+          console.log("Humidity: " + response.main.humidity + "%");
+          console.log("Wind Speed: " + response.wind.speed + " MPH");
+
+          $("#weatherHighlight").text(
+            response.name +
+              " (" +
+              moment().format("l") +
+              ") " +
+              response.weather.icon
+          );
+          $(".temp").text("Temperature: " + response.main.temp + " °F");
+          $(".humidity").text("Humidity: " + response.main.humidity + "%");
+          $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");
         });
 
         // Get the forecasted weather | API documantation @ https://openweathermap.org/forecast5
