@@ -64,13 +64,13 @@
           <div class="row">
             <div class="card" id="locationHighlight">
               <div class="card-body">
-                <h5 class="card-title" id="weatherHighlight"></h5>
+                <h4 class="card-title" id="weatherHighlight"></h4>
                 <img class="card-subtitle mb-2" id="weatherIcon" alt="weather icon">
                 <ul id="locationStats">
                   <li class="temp"></li>
                   <li class="humidity"></li>
                   <li class="wind"></li>
-                  <li class="uv"></li>
+                  <li class="uv"><span></span></li>
                 </ul>
               </div>
             </div>
@@ -218,6 +218,7 @@
           q +
           "&units=imperial&appid=" +
           apikey;
+        
         var queryForecastURL =
           "https://api.openweathermap.org/data/2.5/forecast?q=" +
           q +
@@ -243,15 +244,27 @@
           console.log("Humidity: " + response.main.humidity + "%");
           console.log("Wind Speed: " + response.wind.speed + " MPH");
 
-        //   $("#weatherHighlight").text(response.name + " (" + moment().format("l") + ") ").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
-        $("#weatherHighlight").text(response.name + " (" + moment().format("l") + ") ");
-        $("#weatherIcon").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
+          var lattitude = response.coord.lat;
+          var longitude = response.coord.lon;
+
+          $("#weatherHighlight").text(response.name + " (" + moment().format("l") + ") ");
+          $("#weatherIcon").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
           $(".temp").text("Temperature: " + response.main.temp + " °F");
           $(".humidity").text("Humidity: " + response.main.humidity + "%");
           $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");
-        });
 
-        // Get the forecasted weather | API documantation @ https://openweathermap.org/forecast5
+                $.ajax({
+                url: "http://api.openweathermap.org/data/2.5/uvi?appid=" + apikey + "&lat="+ lattitude +"&lon=" + longitude,
+                method: "GET"
+            }).then(function(response) {
+                console.log(response);
+                console.log("atlanta: ", response.value);
+
+                $(".uv").text("UV Index: " + response.value);
+            });
+        });
+        
+        // Get the forecasted weather | API documentation @ https://openweathermap.org/forecast5
         $.ajax({
           url: queryForecastURL,
           method: "GET"
